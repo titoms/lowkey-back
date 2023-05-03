@@ -1,20 +1,23 @@
-import { useSession, signIn, signOut } from 'next-auth/react';
+import Layout from '@/components/Layout';
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
   const { data: session } = useSession();
-  if (session) {
-    return <>Logged in {session.user.email}</>;
-  }
   return (
-    <div className="bg-blue-900 w-screen h-screen items-center flex">
-      <div className="text-center w-full">
-        <button
-          onClick={() => signIn('google')}
-          className="bg-white p-2 px-4 rounded-lg"
-        >
-          Login with Google
-        </button>
+    <Layout>
+      <div className="text-blue-900 flex overflow-hidden justify-between">
+        <h1>
+          Hello <b>{session?.user?.name}</b>
+        </h1>
+        <div className="flex text-black gap-1">
+          <img
+            src={session?.user?.image}
+            className="w-6 h-6 rounded-full"
+            alt="Profile pic"
+          />
+          <span className="px-2">{session?.user?.name}</span>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
