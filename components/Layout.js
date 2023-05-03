@@ -22,12 +22,12 @@ export default function Layout({ children }) {
       <Nav />
       <div className="bg-gray-200 flex-grow mt-2 mr-2 mb-2 rounded-lg p-4">
         {children}
-        <button
+        {/* <button
           onClick={() => signOut('google')}
           className="bg-white p-2 px-4 rounded-lg"
         >
           Logout
-        </button>
+        </button> */}
       </div>
     </div>
   );

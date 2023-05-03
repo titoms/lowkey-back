@@ -25,3 +25,55 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
+
+input,
+textarea {
+  @apply border-2 border-blue-400 rounded-md px-2 w-full;
+  @apply mb-2;
+}
+
+input:focus,
+textarea:focus {
+  @apply border-blue-900;
+}
+
+h1 {
+  @apply text-blue-900 mb-4 text-xl;
+}
+
+label {
+  @apply text-blue-900;
+}
+
+.btn-primary {
+  @apply bg-blue-900 text-white px-4 py-2 rounded-md;
+}
+
+table.basic {
+  @apply w-full;
+}
+
+table.basic thead tr td {
+  @apply bg-blue-100;
+}
+
+table.basic tr td {
+  @apply border p-1 border-blue-400;
+}
+
+table.basic a {
+  @apply bg-blue-900 text-white text-sm p-1 mr-1 px-2 gap-1 inline-flex rounded-md;
+}
+
+.btn-red,
+.btn-default {
+  @apply px-4 py-1 rounded-md;
+}
+
+.btn-red {
+  @apply bg-red-800 text-white;
+}
+
+.btn-default {
+  @apply bg-gray-600 text-white;
+}
