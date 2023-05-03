@@ -26,6 +26,10 @@ body {
     rgb(var(--background-start-rgb));
 } */
 
+img {
+  max-height: 100%;
+}
+
 input,
 textarea {
   @apply border-2 border-blue-400 rounded-md px-2 w-full;
