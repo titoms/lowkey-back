@@ -1,6 +1,5 @@
 import Layout from '@/components/Layout';
 import axios from 'axios';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 export default function Categories() {
@@ -39,7 +38,11 @@ export default function Categories() {
     setParentCategory(category.parent?._id);
   };
 
-  const deleteCategory = (category) => {};
+  const deleteCategory = async (category) => {
+    const { _id } = category;
+    await axios.delete('/api/categories?_id=' + _id);
+    fetchCategories();
+  };
 
   return (
     <Layout>

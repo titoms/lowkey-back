@@ -11,11 +11,20 @@ export default async function handler(req, res) {
 
   if (method === 'POST') {
     const { categoryName, parentCategory } = req.body;
-    const categoryData = await Category.create({
-      categoryName,
-      parent: parentCategory,
-    });
-    res.json(categoryData);
+    if (parentCategory) {
+      const data = {
+        categoryName,
+        parent: parentCategory,
+      };
+      const categoryData = await Category.create(data);
+      res.json(categoryData);
+    } else {
+      const data = {
+        categoryName,
+      };
+      const categoryData = await Category.create(data);
+      res.json(categoryData);
+    }
   }
 
   if (method === 'PUT') {
@@ -28,5 +37,11 @@ export default async function handler(req, res) {
       }
     );
     res.json(categoryData);
+  }
+
+  if (method === 'DELETE') {
+    const { _id } = req.query;
+    await Category.deleteOne({ _id });
+    res.json('Deleted category');
   }
 }
