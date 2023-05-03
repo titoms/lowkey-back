@@ -31,13 +31,15 @@ img {
 }
 
 input,
-textarea {
+textarea,
+select {
   @apply border-2 border-blue-400 rounded-md px-2 w-full;
   @apply mb-2;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   @apply border-blue-900;
 }
 

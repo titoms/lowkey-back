@@ -31,6 +31,7 @@ export default function ProductsForm({
     }
     setGoToProducts(true);
   };
+
   if (goToProducts) {
     router.push('/products');
   }
