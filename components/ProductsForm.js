@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Spinner from './Spinner';
 import { ReactSortable } from 'react-sortablejs';
 
@@ -10,18 +10,27 @@ export default function ProductsForm({
   description: currentDescription,
   price: currentPrice,
   productImages: currentImages,
+  category: currentCategory,
 }) {
   const [title, setTitle] = useState(currentTitle || '');
   const [description, setDescription] = useState(currentDescription || '');
   const [price, setPrice] = useState(currentPrice || '');
+  const [category, setCategory] = useState(currentCategory || '');
   const [goToProducts, setGoToProducts] = useState(false);
   const [productImages, setProductImages] = useState(currentImages || []);
   const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/categories').then((response) => {
+      setCategories(response.data);
+    });
+  }, []);
 
   const saveProduct = async (e) => {
     e.preventDefault();
-    const data = { title, description, price, productImages };
+    const data = { title, description, price, productImages, category };
     if (_id) {
       //update data
       await axios.put('/api/products', { ...data, _id });
@@ -63,8 +72,23 @@ export default function ProductsForm({
         type="text"
         placeholder="Product Name"
         value={title}
+        className="mb-0 p-2"
         onChange={(e) => setTitle(e.target.value)}
       />
+      <label htmlFor="">Category :</label>
+      <select
+        type="text"
+        placeholder="Product Name"
+        value={category}
+        className="mb-0 p-2"
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option value="">Uncategorized</option>
+        {categories.length > 0 &&
+          categories.map((category) => (
+            <option value={category._id}>{category.categoryName}</option>
+          ))}
+      </select>
       <label htmlFor="">Photos :</label>
       <div className="mb-2 flex flex-wrap gap-1">
         <ReactSortable
@@ -111,12 +135,14 @@ export default function ProductsForm({
       <textarea
         placeholder="Description"
         value={description}
+        className="pt-2"
         onChange={(e) => setDescription(e.target.value)}
       ></textarea>
       <label htmlFor="">Product price (in EUR):</label>
       <input
         type="number"
         placeholder="Price"
+        className="mb-0 p-2"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
       />

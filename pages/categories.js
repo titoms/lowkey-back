@@ -65,7 +65,6 @@ export default function Categories() {
           value={parentCategory}
           onChange={(e) => setParentCategory(e.target.value)}
         >
-          <option value="">No parent category</option>
           {categories.length > 0 &&
             categories.map((category) => (
               <option key={category._id} value={category._id}>
