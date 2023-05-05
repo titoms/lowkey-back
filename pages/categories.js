@@ -94,13 +94,13 @@ export default function Categories() {
                 <td>
                   <button
                     onClick={() => editCategory(category)}
-                    className="btn-primary mr-1"
+                    className="btn-default mr-1"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => deleteCategory(category)}
-                    className="btn-primary mr-1"
+                    className="btn-red mr-1"
                   >
                     Delete
                   </button>

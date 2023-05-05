@@ -29,7 +29,10 @@ export default function products() {
             <tr key={products._id}>
               <td>{products.title}</td>
               <td>
-                <Link href={'/products/edit/' + products._id}>
+                <Link
+                  className="btn-default"
+                  href={'/products/edit/' + products._id}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -46,7 +49,10 @@ export default function products() {
                   </svg>
                   Edit
                 </Link>
-                <Link href={'/products/delete/' + products._id}>
+                <Link
+                  className="btn-red"
+                  href={'/products/delete/' + products._id}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
